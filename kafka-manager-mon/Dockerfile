@@ -13,6 +13,8 @@ ADD kafka-manager-1.3.3.22 kafka-manager
 
 WORKDIR /usr/kafka-manager
 
+ENV ZK_HOSTS zk:2181
+
 COPY km.sh .
 
 CMD ["sh", "km.sh"]
