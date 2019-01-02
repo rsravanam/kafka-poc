@@ -8,7 +8,7 @@ sudo apt install openjdk-8*
 ---
   
 wget https://github.com/yahoo/kafka-manager/archive/1.3.3.22.tar.gz  
-tar xzf kafka-manager-1.3.3.22.zip  
+tar xzf 1.3.3.22.tar.gz  
 cd kafka-manager-1.3.3.22  
 ./sbt clean dist  
   
