@@ -1,0 +1,289 @@
+    1  sudo docker image ls
+    2  ls
+    3  cd kafka-manager-1.3.3.22/
+    4  ls
+    5  vi Dockerfile
+    6  sudo docker rmi 7cce4aa0feb9 89d6ef29f8a4
+    7  sudo docker rmi 7cce4aa0feb9 89d6ef29f8a4 -f
+    8  sudo docker image ls
+    9  sudo docker build -t sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2 .
+   10  npm install kafka-node
+   11  ls
+   12  ll
+   13  rm -rf node_modules
+   14  ll
+   15  cd ..
+   16  ls
+   17  mkdir kafka-node
+   18  cd kafka-node/
+   19  npm install kafka-node
+   20  ls
+   21  sudo docker image ls
+   22  sudo docker container ls -s
+   23  sudo docker container ls -a
+   24  sudo docker start yahoo
+   25  sudo docker container ls -a
+   26  sudo docker container rm -f yahoo
+   27  sudo docker container rm -f elated_mccarthy
+   28  #sudo docker run -d -p 8080:8080 -p 9999:9999 
+   29  sudo docker image ls
+   30  #sudo docker run -d --name yahoo -p 8080:8080 -p 9999:9999 sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+   31  sudo docker run -d --name yahoo -p 8080:8080 -p 9999:9999 sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+   32  sudo docker container ls -a
+   33  sudo docker image ls
+   34  #sudo docker run -d --name nodeapp -p 8008:8008 sravanam1242/private_docker:nodejs_app_kafka
+   35  sudo docker run -d --name nodeapp -p 8008:8008 sravanam1242/private_docker:nodejs_app_kafka
+   36  sudo docker container ls -a
+   37  telnet localhost 8008
+   38  cd ..
+   39  ls
+   40  cd kafka-poc/
+   41  ls
+   42  sh test.sh 
+   43  nano test.sh 
+   44  sh test.sh 
+   45  telnet localhost 9999
+   46  cd ..
+   47  ls
+   48  cd kafka-manager-1.3.3.22/
+   49  ls
+   50  nano Dockerfile
+   51  telnet 10.0.3.200 2181
+   52  cd -
+   53  cd kafka-node/
+   54  ls 
+   55  npm install kafkajs
+   56  ll
+   57  ll node_modules/
+   58  ll node_modules/ | grep kafka
+   59  exit
+   60  ls
+   61  cd kafka-poc/
+   62  ls
+   63  git status
+   64  cd kafka-manager-mon/
+   65  ls
+   66  ll kafka-manager-1.3.3.22/
+   67  cp ~/kafka-manager-1.3.3.22/Dockerfile ./
+   68  cd ..
+   69  git status
+   70  git clone https://github.com/BetterCloud/kadmin.git
+   71  ls
+   72  cd kadmin/
+   73  ls
+   74  nano Dockerfile 
+   75  sudo docker container ls
+   76  ls
+   77  sudo docker build -t sravanam1242/private_docker:kafka_producer_consumer_web .
+   78  sudo docker image sl
+   79  sudo docker image ls
+   80  sudo docker run -d --name kafka_producer_consumer_web -p 80:8080 sravanam1242/private_docker:kafka_producer_consumer_web
+   81  sudo docker container ls
+   82  sudo docker container ls -a
+   83  sudo docker run --name kafka_producer_consumer_web -p 80:8080 sravanam1242/private_docker:kafka_producer_consumer_web
+   84  sudo docker rm kafka_producer_consumer_web
+   85  sudo docker run --name kafka_producer_consumer_web -p 80:8080 sravanam1242/private_docker:kafka_producer_consumer_web
+   86  sudo docker container ls -a
+   87  sudo docker stop yahoo
+   88  sudo docker start yahoo -p 80:8080
+   89  sudo docker start --help
+   90  sudo docker rm yahoo
+   91  history | grep run
+   92  sudo docker run -d --name yahoo -p 80:8080 -p 9999:9999 sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+   93  sudo docker container ls -a
+   94  sudo docker start kafka_producer_consumer_web
+   95  sudo docker rm kafka_producer_consumer_web
+   96  sudo docker run --name kafka_producer_consumer_web -p 8080:8080 sravanam1242/private_docker:kafka_producer_consumer_web
+   97  sudo docker container ls -a
+   98  sudo docker container rm kafka_producer_consumer_web
+   99  sudo docker image ls
+  100  sudo docker rmi -f 04c22d5b3510
+  101  sudo docker rmi -f 1b2582b59860
+  102  sudo docker build -t sravanam1242/private_docker:kafka_producer_consumer_web .
+  103  sudo docker run --name kafka_producer_consumer_web -p 8080:8080 sravanam1242/private_docker:kafka_producer_consumer_web
+  104  sudo docker image ls
+  105  sudo docker container ls -a
+  106  sudo docker container rm kafka_producer_consumer_web
+  107  ls
+  108  cd dist/
+  109  ls
+  110  l
+  111  ll
+  112  java -jar shared-kafka-admin-micro-*.jar --spring.profiles.active=kadmin,local
+  113  cd ..
+  114  nano Dockerfile 
+  115  java -jar shared-kafka-admin-micro-*.jar --spring.profiles.active=kadmin,local
+  116  cd dist/
+  117  java -jar shared-kafka-admin-micro-*.jar --spring.profiles.active=kadmin,local
+  118  ls
+  119  cd ..
+  120  ls
+  121  java -jar ./dist/shared-kafka-admin-micro-*.jar --spring.profiles.active=kadmin,local
+  122  nano application.properties 
+  123  java -jar ./dist/shared-kafka-admin-micro-*.jar --spring.profiles.active=kadmin,local
+  124  nano docker-compose.yml 
+  125  docker-compose up
+  126  sudo docker-compose up
+  127  docker-compose up
+  128  nano docker-compose.yml 
+  129  java -jar ./dist/shared-kafka-admin-micro-*.jar --spring.profiles.active=kadmin,local
+  130  cd ../..
+  131  sudo docker image ls
+  132  cd kafka-manager-1.3.3.22/
+  133  ls
+  134  cd kafka-manager-1.3.3.22/
+  135  ls
+  136  history | grep kafka-manager
+  137  sudo docker container ls
+  138  sudo docker continer stop nodeapp
+  139  sudo docker container stop nodeapp
+  140  sudo docker container ls
+  141  sudo docker container stop yahoo
+  142  sudo docker container ls -a
+  143  ls 
+  144  nano conf/application.conf 
+  145  bin/kafka-manager -Dconfig.file=/path/to/application.conf -Dhttp.port=8080
+  146  bin/kafka-manager -Dconfig.file=conf/application.conf -Dhttp.port=8080
+  147  ls /home/ubuntu/kafka-manager-1.3.3.22/kafka-manager-1.3.3.22/
+  148  rm -rf /home/ubuntu/kafka-manager-1.3.3.22/kafka-manager-1.3.3.22/RUNNING_PID 
+  149  bin/kafka-manager -Dconfig.file=conf/application.conf -Dhttp.port=8080
+  150  sudo docker container ks
+  151  sudo docker container ls
+  152  sudo docker image ls
+  153  sudo docker run -p 8080:8080 -p 9999:9999 --name yahoo sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+  154  sudo docker container ls -a
+  155  sudo docker container rm -f yahoo
+  156  sudo docker container rm -f kadmin_kadmin_1
+  157  sudo docker container rm -f nodeapp
+  158  sudo docker run -p 8080:8080 -p 9999:9999 --name yahoo sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+  159  ps -ef
+  160  netstat -nlp | grep 8080
+  161  ps -ef | grep 8080
+  162  sudo kill -9 19115
+  163  ps -ef | grep 8080
+  164  netstat -nlp | grep 8080
+  165  sudo docker container ls
+  166  sudo docker container stop yahoo
+  167  sudo docker container ls
+  168  sudo docker container ls -a
+  169  history
+  170  history | grep docker
+  171  docker image ls
+  172  sudo docker image ls
+  173  sudo docker commit sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+  174  sudo docker run -d -p 8080:8080 -p 9999:9999 --name yahoo sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+  175  sudo docker remove yahoo
+  176  sudo docker rm yahoo
+  177  sudo docker run -d -p 8080:8080 -p 9999:9999 --name yahoo sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+  178  sudo docker commit sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+  179  sudo docker conatiner ls
+  180  sudo docker container ls
+  181  history | grep commit
+  182  sudo docker conatiner ls
+  183  sudo docker container ls
+  184  sudo docker commit -m "image update" sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+  185  sudo docker commit -m "image update" yahoo
+  186  sudo docker push
+  187  sudo docker push sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+  188  ll
+  189  sudo docker container ls
+  190  sudo docker container stop yahoo
+  191  sudo docker container start yahoo
+  192  sudo docker container ls
+  193  sudo docker container ls -a
+  194  sudo docker container start yahoo
+  195  sudo docker container ls -a
+  196  sudo docker conatiner rm yahoo
+  197  sudo docker container rm yahoo
+  198  sudo docker run -p 8080:8080 -p 9999:9999 --name yahoo sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+  199  ping 192.168.8.67
+  200  tenet 192.168.8.67 9092
+  201  telnet 192.168.8.67 9092
+  202  telnet 192.168.8.67 2181
+  203  telnet 192.168.8.137 9092
+  204  sudo docker container ls
+  205  sudo docker container stop yahoo
+  206  sudo docker container rm yahoo
+  207  sudo docker run -d -p 8080:8080 -p 9999:9999 --name yahoo sravanam1242/private_docker:yahoo_jmx_enabled_kafka_monitoring_v2
+  208  sudo docker container ls
+  209  netstat -ntlp | grep 8080
+  210  docker image ls
+  211  sudo docker image ls
+  212  ls
+  213  cd kafka-manager-1.3.3.22/
+  214  ls
+  215  ll
+  216  cat Dockerfile
+  217  history >> history
+  218  nano history 
+  219  git status
+  220  cd kafka-manager-1.3.3.22/
+  221  ls
+  222  cd ..
+  223  cat km.sh 
+  224  cd ..
+  225  ls
+  226  cd kafka-node/
+  227  ls
+  228  cd ..
+  229  cd kafka-poc/
+  230  ls
+  231  cd kafka-manager-mon/
+  232  ls
+  233  cd ..
+  234  git status
+  235  cd kafka-manager-mon/
+  236  ls
+  237  cd kafka-manager-1.3.3.22/
+  238  ls
+  239  cd ..
+  240  cat Dockerfile 
+  241  ll
+  242  cd ..
+  243  ls
+  244  git status
+  245  git add .
+  246  ls
+  247  la kaadmin
+  248  cd kadmin/
+  249  ls
+  250  git status
+  251  cat Dockerfile 
+  252  cd ..
+  253  mv kadmin ~/
+  254  ls ~
+  255  git stauts
+  256  git status
+  257  git add .
+  258  git commit -m "update: dockerize kafka admin "
+  259  git push
+  260  git pull
+  261  ls
+  262  c kafka-manager-mon/
+  263  ls
+  264  cd kafka-manager-mon/
+  265  ls
+  266  cat Dockerfile 
+  267  cd ..
+  268  ls
+  269  cd kafka-manager-1.3.3.22/
+  270  ls
+  271  cat Dockerfile
+  272  git status
+  273  cd ..
+  274  ls
+  275  mv kafka-poc kafka-poc-bak
+  276  git clone https://github.com/rsravanam/kafka-poc.git -b dev
+  277  cd kafka-poc
+  278  ls
+  279  git status
+  280  git checkout .
+  281  git pull
+  282  cd ..
+  283  ls
+  284  cp kafka-manager-1.3.3.22 kafka-poc
+  285  cp kafka-manager-1.3.3.22 kafka-poc -r
+  286  ls kafka-poc
+  287  sudo docker images
+  288  cd kafka-poc
+  289  history >> history
