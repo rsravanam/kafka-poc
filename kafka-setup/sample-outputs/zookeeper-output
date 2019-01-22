@@ -1,0 +1,34 @@
+PLAY ***************************************************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.51.7]
+
+TASK [zk : Update apt cache] ***************************************************
+ok: [192.168.51.7]
+
+TASK [zk : Install Zookeeper package] ******************************************
+ok: [192.168.51.7]
+
+TASK [zk : Copy the zookeeper configuration failed_when] ***********************
+ok: [192.168.51.7]
+
+TASK [zk : Waiting for port "2181" open on the host] ***************************
+ok: [192.168.51.7]
+
+TASK [zk : Check ZooKeeper port in server] *************************************
+ok: [192.168.51.7] => {
+    "msg": {
+        "changed": false,
+        "elapsed": 5,
+        "path": null,
+        "port": 2181,
+        "search_regex": null,
+        "state": "started"
+    }
+}
+
+TASK [zk : Restart zookeeper service] ******************************************
+changed: [192.168.51.7]
+
+PLAY RECAP *********************************************************************
+192.168.51.7               : ok=7    changed=1    unreachable=0    failed=0

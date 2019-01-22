@@ -1,0 +1,47 @@
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 360
+  tags:
+    - zk
+
+- name: Install Zookeeper package
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - curl
+    - zookeeperd
+  tags:
+    - zk
+
+- name: Copy the zookeeper configuration failed_when
+  template:
+    src: zoo.cfg.j2
+    dest: /etc/zookeeper/conf/zoo.cfg
+  tags:
+    - zk
+
+- name: Waiting for port "{{ client_port }}" open on the host
+  wait_for:
+    port: "{{ client_port }}"
+    state: started
+    delay: 5
+    timeout: 15
+  register: check_port
+  tags:
+    - zk
+
+- name: Check ZooKeeper port in server
+  debug:
+    msg: "{{ check_port }}"
+  tags:
+    - zk
+
+- name: Restart zookeeper service
+  service:
+    name: zookeeper
+    state: restarted
+    enabled: yes
+  tags:
+    -zk

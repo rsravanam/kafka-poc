@@ -1,0 +1,8 @@
+- hosts: localhost
+  become: yes
+  become_method: sudo
+
+  roles:
+    - { role: java, tags: ["java"] }
+    - { role: zk, tags: ["zk"] }
+    - { role: kafka, tags: ["kafka"] }

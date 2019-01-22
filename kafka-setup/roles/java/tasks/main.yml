@@ -1,0 +1,32 @@
+- name: Check if Java is already installed
+  command: java -version
+  register: java_version
+  failed_when: java_version.rc not in [0, 1, 2]
+  changed_when: False
+  tags:
+    - java
+
+- name: Add JRE ppa
+  apt_repository:
+    repo: "{{ java.package_repository }}"
+    state: present
+  tags:
+    - java
+  when: java_version.rc == 2
+
+- name: Oracle License
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+  tags:
+    - java
+  when: java_version.rc == 2
+
+- name: Install JRE
+  apt:
+    pkg: "{{ java.package }}"
+    state: latest
+    update-cache: yes
+    cache_valid_time: "{{ apt_cache_timeout }}"
+    force: no
+  tags:
+    - java
+  when: java_version.rc == 2

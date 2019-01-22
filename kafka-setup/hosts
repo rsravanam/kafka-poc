@@ -1,0 +1,26 @@
+[kafkanodes]
+192.168.51.4
+192.168.51.5
+192.168.51.6
+
+[zookeepers]
+192.168.51.7
+
+[creds:children]
+kafkanodes
+zookeepers
+
+[creds:vars]
+############## Credentials ######################
+ansible_ssh_user=vagrant
+ansible_ssh_pass=vagrant
+
+[zookeepers:vars]
+############## Credentials ######################
+ansible_ssh_user=vagrant
+ansible_ssh_pass=vagrant
+
+[kafkanodes:vars]
+############## Credentials ######################
+ansible_ssh_user=vagrant
+ansible_ssh_pass=vagrant

@@ -1,0 +1,94 @@
+    1  cat test.j2 
+    2  ls
+    3  nano test.j2 
+    4  ls
+    5  cat test.j2 
+    6  exit
+    7  sudo apt-get update
+    8  sudo apt-get install zookeeperd
+    9  sudo apt-get install zookeeperd -y
+   10  netstat -ntlp | grep 2181
+   11  telnet localhost 2181
+   12  sudo adduser --system --no-create-home --disabled-password --disabled-login kafka
+   13  wget "http://www-eu.apache.org/dist/kafka/1.0.1/kafka_2.12-1.0.1.tgz"
+   14  ls
+   15  wget "http://www-eu.apache.org/dist/kafka/1.0.1/kafka_2.12-1.0.1.tgz"
+   16  curl "http://www-eu.apache.org/dist/kafka/1.0.1/kafka_2.12-1.0.1.tgz"
+   17  wget https://mirrors.koehn.com/apache/kafka/2.1.0/kafka_2.12-2.1.0.tgz
+   18  ls
+   19  ls /usr/local/
+   20  mkdir /usr/local/kafka
+   21  sudo mkdir /usr/local/kafka
+   22  ll
+   23  ll /usr/local/
+   24  sudo groupadd kafka
+   25  sudo chown kafka:kafka /usr/local/kafka
+   26  ll /usr/local/
+   27  tar -xzvf kafka_2.12-2.1.0.tgz  --directory /usr/local/kafka/
+   28  sudo tar -xzvf kafka_2.12-2.1.0.tgz  --directory /usr/local/kafka/
+   29  ll /usr/local/kafka/
+   30  sudo rm -rf /usr/local/kafka/*
+   31  ll /usr/local/kafka/
+   32  sudo tar -xzvf kafka_2.12-2.1.0.tgz  --directory /usr/local/kafka/  --strip-components 1
+   33  ll /usr/local/kafka/
+   34  mkdir -p /usr/local/var/run/kafka/data
+   35  sudo mkdir -p /usr/local/var/run/kafka/data
+   36  sudo mkdir -p /var/lib/kafka/data
+   37  sudo nano /usr/local/kafka/config/server.properties 
+   38  sudo chown kafka:kafka /usr/local/kafka/
+   39  ll /usr/local/kafka/
+   40  sudo chown -R kafka:kafka /usr/local/kafka/
+   41  ll /usr/local/kafka/
+   42  ll /var/lib/kafka/
+   43  sudo chown -R kafka:kafka /var/lib/kafka
+   44  sh /usr/local/kafka/bin/kafka-server-start.sh /usr/local/kafka/config/server.properties 
+   45  sudo sh /usr/
+
+
+192.168.51.7
+
+# zookeeper.connect={{ zookeepers | join(":{0},".format(zookeeper.client_port)) }}:{{ zookeeper.client_port }}
+#
+#zookeeper.connect={% for host in groups['zookeepers'] %}{{ hostvars[host]['inventory_hostname'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}
+
+
+
+
+
+    
+    8  KF_TOPIC="`pwd -P`/bin/kafka-topics.sh"
+    9  $KF_TOPIC --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+   10  echo $KF_TOPICS
+   11  echo $KF_TOPIC
+   12  $KF_TOPIC --list --zookeeper localhost:2181
+   13  $KF_PRODUCER="`pwd -P`/bin/kafka-console-producer.sh" 
+   14  KF_PRODUCER="`pwd -P`/bin/kafka-console-producer.sh" 
+   15  echo $KF_PRODUCER
+   16  $KF_PRODUCER --broker-list localhost:9092 --topic test
+   17  KF_CONSUMER="`pwd -P`/bin/kafka-console-consumer.sh" 
+   18  echo $KF_CONSUMER
+   19  
+$KF_CONSUMER --bootstrap-server localhost:9092 --topic test --from-beginning
+
+present ←
+absent / running / restarted /stopped
+
+Errors:
+
+Leader not available
+
+
+./bin/kafka-producer-perf-test --topic testme --num-records 200000 --record-size 1000 --throughput 10000000 --producer-props bootstrap.servers=10.0.3.232:9092
+./bin/kafka-producer-perf-test --topic topic-b --num-records 800000 --record-size 1000 --throughput 10000000 --producer-props bootstrap.servers=localhost:9092
+
+./bin/kafka-consumer-perf-test.sh --broker-list 10.0.3.245:9092,10.0.3.237:9092,10.0.3.232:9092 --topic actionitems --messages 100 --show-detailed-stats --timeout 100000
+
+
+./bin/kafka-consumer-perf-test.sh --new-consumer --broker-list 10.0.3.245:9092,10.0.3.237:9092,10.0.3.232:9092 --topic nodeapp --messages 100 --show-detailed-stats --consumer.config ./config/consumer.properties --zookeeper <zookeeper-host>:2181
+
+
+bin/kafka-console-consumer.sh --bootstrap-server 10.0.3.245:9092 --topic my-topic --from-beginning
+
+
+./bin/kafka-consumer-groups.sh --bootstrap-server 10.0.3.245:9092,10.0.3.237:9092,10.0.3.232:9092 --list
+
