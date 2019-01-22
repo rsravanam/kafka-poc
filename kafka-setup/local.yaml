@@ -1,4 +1,4 @@
-- hosts: "{{ my_hosts | default('all') }}"
+- hosts: localhost
   become: yes
   become_method: sudo
 
