@@ -1,0 +1,28 @@
+apt_cache_timeout: 3600
+
+## kafka vars ##
+
+kafka:
+  mirror_url: "https://mirrors.koehn.com/apache/kafka"
+  version: "2.1.0"
+  tar_download_dir: "/tmp"
+  install_dir: "/opt/kafka"
+  data_root: "/usr/local/kafka"
+  log:
+    data_dir: "/usr/local/kafka/data"
+  server_properties_file: "server.properties"
+  client_port: "9092"
+  service_file: "kafka_service"
+  properties:
+    delete_topic_enable: "true"
+
+## zookeeper vars ##
+
+zk:
+  client_port: 2181
+  connection_timeout_milli_seconds: 6000
+
+## java vars ##
+
+java:
+  home_path: "/usr/lib/jvm/java-8-oracle"

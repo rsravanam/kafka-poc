@@ -1,0 +1,8 @@
+apt_cache_timeout: 3600
+
+## java vars ##
+
+java:
+  home_path: "/usr/lib/jvm/java-8-oracle"
+  package_repository: "ppa:webupd8team/java"
+  package: "oracle-java8-installer"

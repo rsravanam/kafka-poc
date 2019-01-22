@@ -1,0 +1,55 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:		zookeeper
+# Required-Start:	$remote_fs $syslog
+# Required-Stop:	$remote_fs $syslog
+# Default-Start:	2 3 4 5
+# Default-Stop:
+# Short-Description:	Zookeeper daemon
+### END INIT INFO
+
+set -e
+
+export KAFKA_HOME={{ kafka.install_dir }}
+
+# /etc/init.d/kafka: start and stop the Kafka daemon
+
+. /lib/lsb/init-functions
+
+# Are we running from init?
+run_by_init() {
+    ([ "$previous" ] && [ "$runlevel" ]) || [ "$runlevel" = S ]
+}
+
+export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
+
+case "$1" in
+  start)
+	echo "Starting Kafka"
+        sudo "$KAFKA_HOME/bin/kafka-server-start.sh" "-daemon" "$KAFKA_HOME/config/{{ kafka.server_properties_file }}"
+        echo `ps ax | grep -i 'kafka\.Kafka' | grep java | grep -v grep |  awk '{print $1}'`
+        #log_end_msg 0 || true
+	;;
+  stop)
+	echo "Stopping Kafka" "kafka"
+        sudo kill -9 `ps ax | grep -i 'kafka\.Kafka' | grep java | grep -v grep |  awk '{print $1}'`
+#	log_end_msg 0 || true
+	;;
+  status)
+  PID=`ps ax | grep -i 'kafka\.Kafka' | grep java | grep -v grep |  awk '{print $1}'`
+
+        if [ -n "$PID" -a -e /proc/$PID ]; then
+          echo "Kafka is running with the process ID $PID"
+        else
+          echo "PROCESS_EXITED"
+        fi
+
+	;;
+
+  *)
+	log_action_msg "Usage: /etc/init.d/ssh {start|stop|status}" || true
+	exit 1
+esac
+
+exit 0

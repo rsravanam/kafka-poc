@@ -1,0 +1,118 @@
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{ apt_cache_timeout }}"
+  tags:
+    - cache
+    - kafka
+  ignore_errors: True
+
+- name: Create user group for kafka
+  group:
+    name: kafka
+    state: present
+  tags: kafka
+  register: create_kafka_group
+  failed_when: create_kafka_group.rc != 0
+
+- name: Create user for kafka
+  user:
+    name: kafka
+    password: kafka
+    groups: sudo
+    system: True
+    state: present
+  tags: kafka
+  register: create_kafka_user
+  failed_when: create_kafka_user.rc != 0
+
+- name: Check the kafka tar existance
+  command: test -f {{ kafka.tar_download_dir }}/kafka_2.12-{{ kafka.version }}.tgz
+  register: kafka_tar_downloaded
+  failed_when: kafka_tar_downloaded.rc not in [0, 1]
+  changed_when: False
+  tags: kafka
+
+- name: Download the kafka binaries
+  get_url:
+    url: "{{ kafka.mirror_url }}/{{ kafka.version }}/kafka_2.12-{{ kafka.version }}.tgz"
+    dest: "{{ kafka.tar_download_dir }}/kafka_2.12-{{ kafka.version }}.tgz"
+  when: kafka_tar_downloaded.rc != 0
+  tags: kafka
+
+- name: Create "{{ kafka.install_dir }}" directory to extract the kafka binaries
+  file:
+    path: "{{ kafka.install_dir }}"
+    state: directory
+  tags: kafka
+  register: install_dir
+  when: install_dir.rc != 0
+
+- name: Unarchive the kafka archive into "{{ kafka.install_dir }}"
+  shell: sudo tar xzvf "{{ kafka.tar_download_dir }}/kafka_2.12-{{ kafka.version }}.tgz" --directory "{{ kafka.install_dir }}"  --strip-components 1
+
+- name: Delete the downloaded kafka archive
+  file:
+    path: "{{ kafka.tar_download_dir }}/kafka_2.12-{{ kafka.version }}.tgz"
+    state: absent
+    remote_src: yes
+  when: kafka_tar_downloaded.rc == 0
+
+- name: Create "kafka" directory "{{ kafka.data_root }}" to store the data
+  file:
+    path: "{{ kafka.data_root }}"
+    state: directory
+    mode: 0755
+  tags: kafka
+  register: data_root
+  failed_when: data_root.rc != 0
+
+- name: Create "log data" directory "{{ kafka.log.data_dir }}" for kafka data store
+  file:
+    path: "{{ kafka.log.data_dir }}"
+    state: directory
+    mode: 0755
+    owner: kafka
+    group: kafka
+  tags: kafka
+  when: data_root.rc != 0
+
+- name: Setting fact for zookeeper hosts
+  set_fact:
+    zook_hosts: "{% for host in groups['zookeepers'] %}{{ hostvars[host]['inventory_hostname'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
+
+#- name: Zookeeper hosts to be update in kafka {{server_properties}}
+#  debug:
+#    msg: "{{ zook_hosts }}"
+
+- name: Copy the kafka "server.properties" configuration file
+  template:
+    src: server_properties.j2
+    dest: "{{ kafka.install_dir }}/config/{{ kafka.server_properties_file }}"
+  tags: kafka
+
+- name: Copy the kafka service file
+  template:
+    src: kafka_service.j2
+    dest: "{{ kafka.install_dir }}/{{ kafka.service_file }}"
+  tags: kafka
+
+- name: Start kafka server
+  shell: sh "{{ kafka.install_dir }}/{{ kafka.service_file }}" start
+  become: yes
+  register: service_op
+  failed_when: service_op.stdout == "PROCESS_EXITED"
+
+- name: Sleep for a while for kafka server process start
+  wait_for:
+    timeout: 10
+  when: service_op == 0
+
+- name: Checking the status of kafka process
+  shell: sudo sh "{{ kafka.install_dir }}/{{ kafka.service_file }}" status
+  register: check_pid
+  failed_when: service_op.stdout == "PROCESS_EXITED"
+
+- name: Check pid in server
+  debug:
+    msg: "{{ check_pid }}"
